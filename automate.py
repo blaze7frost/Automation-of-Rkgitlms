@@ -19,13 +19,15 @@ login = driver.find_element_by_xpath('//*[@id="loginbtn"]')
 login.click()
 
 try:
-    for i in range(5):
+    for i in range(6):
         time.sleep(2)
-        driver.refresh()
+        driver.refresh()            
         element = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH, '//*[@id="join_button_input"]'))
         )
         time.sleep(2)
+        if i==5:
+            driver.quit()
 
 except:    
     driver.quit()
