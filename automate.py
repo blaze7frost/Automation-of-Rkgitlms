@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import datetime
 import time
 
 
@@ -18,8 +19,13 @@ login = driver.find_element_by_xpath('//*[@id="loginbtn"]')
 login.click()
 
 try:
-    element = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, '//*[@id="join_button_input"]'))
-    )
-finally:
+    for i in range(5):
+        time.sleep(2)
+        driver.refresh()
+        element = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, '//*[@id="join_button_input"]'))
+        )
+        time.sleep(2)
+
+except:    
     driver.quit()
